@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import easp.exceptions.EASPException;
 //import easp.exceptions.EASPExceptionEnum;
 
-public class ESAPCMD {
+public class EASPCMD {
 
 	public static void main(String[] args) throws EASPException{
 		InputStreamReader isr = null;
