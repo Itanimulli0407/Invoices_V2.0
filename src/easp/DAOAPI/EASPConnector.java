@@ -19,5 +19,7 @@ public interface EASPConnector {
 	 *             username/password or if there were other problems)
 	 */
 	public Connection connect(String username, String password) throws EASPException;
+	
+	public void closeConnection(Connection dbConnection) throws EASPException;
 
 }

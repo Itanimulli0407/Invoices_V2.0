@@ -2,7 +2,9 @@ package easp.exceptions;
 
 public enum EASPExceptionEnum {
 
-	E001 ("Database Server Error");
+	E001 ("Database Server Error"),
+	E002 ("Null Pointer Error"),
+	E003 ("SQL Error");
 	
 	private String type;
 	
