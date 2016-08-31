@@ -4,7 +4,8 @@ public enum EASPExceptionEnum {
 
 	E001 ("Database Server Error"),
 	E002 ("Null Pointer Error"),
-	E003 ("SQL Error");
+	E003 ("SQL Error"),
+	E004 ("IO Exception");
 	
 	private String type;
 	
