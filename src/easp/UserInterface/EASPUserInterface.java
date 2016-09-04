@@ -10,8 +10,8 @@ public interface EASPUserInterface {
 
 	public void start(EASPFacade easpFacade);
 
-	public String readCommand() throws EASPException;
-
 	public void close();
+
+	public void run() throws EASPException;
 	
 }

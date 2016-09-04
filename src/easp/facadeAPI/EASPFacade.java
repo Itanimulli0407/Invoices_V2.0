@@ -1,6 +1,7 @@
 package easp.facadeAPI;
 
 import easp.UserInterface.EASPUserInterface;
+import easp.commands.EASPCommand;
 import easp.exceptions.EASPException;
 
 public interface EASPFacade {
@@ -17,11 +18,12 @@ public interface EASPFacade {
 	
 	public void closeUI();
 	
-	void run();
+	public EASPCommand createCommand(String input);
 	
+	public void executeCommand(EASPCommand command);
+			
 	// -------------------------------- Exceptions ---------------------------- //
 	
 	public void handleEASPException(EASPException easpException);
-
 	
 }

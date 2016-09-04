@@ -3,9 +3,13 @@ package easp.facade;
 import java.sql.Connection;
 
 import easp.UserInterface.EASPUserInterface;
+import easp.commands.EASPCommand;
+import easp.commands.EASPCommandEnum;
 import easp.exceptions.EASPException;
 import easp.facadeAPI.EASPFacade;
+import easp.service.EASPCommandServiceImpl;
 import easp.service.EASPLoginServiceImpl;
+import easp.serviceAPI.EASPCommandService;
 import javafx.util.Pair;
 
 
@@ -21,17 +25,21 @@ public class EASPFacadeImpl implements EASPFacade {
 	//																		//
 	//////////////////////////////////////////////////////////////////////////
 	
-	private void executeCommand(String command) {
-		switch(command){
-		case "exit":
-			closeConnection();
-			closeUI();
-			System.exit(0);
-			break;
-		default:
+	@Override
+	public void executeCommand(EASPCommand command) {
+		if (command.getType().equals(EASPCommandEnum.EXIT)){
+			this.closeUI();
+		} else {
 			System.out.println("Command not available");
-			break;
 		}
+	}
+	
+	@Override
+	public EASPCommand createCommand(String input) {
+		EASPCommand result = null;
+		EASPCommandService commandService = new EASPCommandServiceImpl();
+		result = commandService.createCommand(input);
+		return result;
 	}
 	
 	//////////////////////////////////////////////////////////////////////////
@@ -72,6 +80,8 @@ public class EASPFacadeImpl implements EASPFacade {
 	@Override
 	public void closeUI() {
 		ui.close();
+		closeConnection();
+		System.exit(0);
 	}
 
 	@Override
@@ -82,24 +92,10 @@ public class EASPFacadeImpl implements EASPFacade {
 		try {
 			login = ui.getLogin();
 			this.connectToDB(login.getKey(), login.getValue());
-		} catch (EASPException e) {
-			e.printStackTrace();
+			ui.run();
+		} catch (EASPException easpException) {
+			this.handleEASPException(easpException);
 		}
-		run();
-	}
-	
-	@Override
-	public void run() {
-		String command = "initial";
-		while (!command.equals("exit")){
-			try {
-				command = ui.readCommand();
-				executeCommand(command);	
-			} catch (EASPException easpException) {
-				this.handleEASPException(easpException);
-			}
-		}
-		closeConnection();
 		closeUI();
 	}
 	

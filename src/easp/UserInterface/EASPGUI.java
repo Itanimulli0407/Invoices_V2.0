@@ -19,13 +19,13 @@ public class EASPGUI implements EASPUserInterface {
 	}
 
 	@Override
-	public String readCommand() {
+	public void close() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public void close() {
+	public void run() throws EASPException {
 		// TODO Auto-generated method stub
 		
 	}
