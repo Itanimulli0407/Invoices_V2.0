@@ -6,15 +6,13 @@ import java.io.InputStreamReader;
 
 import easp.exceptions.EASPException;
 import easp.exceptions.EASPExceptionEnum;
+import easp.facade.EASPFacadeImpl;
 //import easp.exceptions.EASPExceptionEnum;
 import javafx.util.Pair;
 
 public class EASPCMD implements EASPUserInterface {
-
-	public static void main(String[] args) throws EASPException{
-		EASPCMD cmd = new EASPCMD();
-		cmd.getLogin();
-	}
+	
+	private EASPFacadeImpl facade;
 
 	@Override
 	public Pair<String, String> getLogin() throws EASPException {
@@ -38,6 +36,12 @@ public class EASPCMD implements EASPUserInterface {
 		
 	    System.out.println("Username: " + username + "  --   Password: " + password);
 	    return new Pair<String, String>(username, password);
+	}
+
+	@Override
+	public void start() {
+		this.facade = new EASPFacadeImpl();
+		facade.start();
 	}
 
 }

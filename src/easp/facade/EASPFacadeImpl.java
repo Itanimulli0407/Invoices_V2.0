@@ -50,18 +50,18 @@ public class EASPFacadeImpl implements EASPFacade {
 	
 	//////////////////////////////////////////////////////////////////////////
 	//																		//
-	//								GUI										//
+	//							USER-INTERFACE								//
 	//																		//
 	//////////////////////////////////////////////////////////////////////////
 	
 	@Override
-	public void closeGUI() {
+	public void closeUI() {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void startGUI() {
+	public void startUI() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -113,6 +113,11 @@ public class EASPFacadeImpl implements EASPFacade {
 			}
 			break;
 		}
+	}
+
+	public void start() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

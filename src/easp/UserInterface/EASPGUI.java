@@ -11,4 +11,10 @@ public class EASPGUI implements EASPUserInterface {
 		return null;
 	}
 
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

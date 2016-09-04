@@ -10,13 +10,13 @@ public interface EASPFacade {
 	
 	public void closeConnection();
 		
-	// ---------------------------------- GUI ---------------------------------- //
+	// ------------------------------ UserInterface --------------------------- //
 	
-	public void startGUI();
+	public void startUI();
 	
-	public void closeGUI();
+	public void closeUI();
 	
-	// -------------------------------- Exceptions -------------------------------- //
+	// -------------------------------- Exceptions ---------------------------- //
 	
 	public void handleEASPException(EASPException easpException);
 	
