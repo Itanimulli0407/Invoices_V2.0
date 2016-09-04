@@ -21,7 +21,7 @@ public class EASPConnectorImpl implements EASPConnector {
 		
 		Connection connection = null;
 		
-		String driverPath = "jdbc:postgresql://localhost/EASP";
+		String driverPath = "jdbc:postgresql://localhost/EASP?useUnicode=yes&textEncoding=UTF-8";
 
 		// Start connection
 		try {

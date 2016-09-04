@@ -2,20 +2,36 @@ package easp.facade;
 
 import java.sql.Connection;
 
+import easp.UserInterface.EASPUserInterface;
 import easp.exceptions.EASPException;
 import easp.facadeAPI.EASPFacade;
 import easp.service.EASPLoginServiceImpl;
+import javafx.util.Pair;
 
 
 public class EASPFacadeImpl implements EASPFacade {
 	
 	EASPLoginServiceImpl loginService;
 	Connection dbConnection;
+	private EASPUserInterface ui;
+		
+	//////////////////////////////////////////////////////////////////////////
+	//																		//
+	//								COMMANDS								//
+	//																		//
+	//////////////////////////////////////////////////////////////////////////
 	
-	public static void main (String[] args){
-		EASPFacadeImpl impl = new EASPFacadeImpl();
-		impl.connectToDB("lukas", "");
-		impl.closeConnection();
+	private void executeCommand(String command) {
+		switch(command){
+		case "exit":
+			closeConnection();
+			closeUI();
+			System.exit(0);
+			break;
+		default:
+			System.out.println("Command not available");
+			break;
+		}
 	}
 	
 	//////////////////////////////////////////////////////////////////////////
@@ -26,7 +42,6 @@ public class EASPFacadeImpl implements EASPFacade {
 	
 	@Override
 	public void connectToDB(String username, String password) {
-		//dbConnection = null;
 		loginService = new EASPLoginServiceImpl();
 		try {
 			dbConnection = loginService.connect(username, password);
@@ -56,14 +71,36 @@ public class EASPFacadeImpl implements EASPFacade {
 	
 	@Override
 	public void closeUI() {
-		// TODO Auto-generated method stub
-
+		ui.close();
 	}
 
 	@Override
-	public void startUI() {
-		// TODO Auto-generated method stub
-		
+	public void startUI(EASPUserInterface ui) {
+		ui.start(this);
+		this.ui = ui;
+		Pair<String, String> login;
+		try {
+			login = ui.getLogin();
+			this.connectToDB(login.getKey(), login.getValue());
+		} catch (EASPException e) {
+			e.printStackTrace();
+		}
+		run();
+	}
+	
+	@Override
+	public void run() {
+		String command = "initial";
+		while (!command.equals("exit")){
+			try {
+				command = ui.readCommand();
+				executeCommand(command);	
+			} catch (EASPException easpException) {
+				this.handleEASPException(easpException);
+			}
+		}
+		closeConnection();
+		closeUI();
 	}
 	
 	//////////////////////////////////////////////////////////////////////////
@@ -71,7 +108,7 @@ public class EASPFacadeImpl implements EASPFacade {
 	//							EXCEPTION-HANDLING							//
 	//																		//
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	@Override
 	public void handleEASPException(EASPException easpException) {
 		
@@ -80,44 +117,39 @@ public class EASPFacadeImpl implements EASPFacade {
 		switch (easpException.getType()){
 		// Server Error
 		case E001:
-			System.out.println(easpException.getOldException());
-			System.out.println("Parameters:");
+			System.err.println(easpException.getOldException());
+			System.err.println("Parameters:");
 			for (String p : easpException.getParameters()){
-				System.out.println(p);
+				System.err.println(p);
 			}
 			break;
 		// Null Pointer Error
 		case E002:
-			System.out.println(easpException.getOldException());
-			System.out.println("Parameters:");
+			System.err.println(easpException.getOldException());
+			System.err.println("Parameters:");
 			if (easpException.getParameters() != null){
 				for (String p : easpException.getParameters()){
-					System.out.println(p);
+					System.err.println(p);
 				}
 			}
 			easpException.getOldException().printStackTrace();
 			break;
 		// SQL Error
 		case E003:
-			System.out.println(easpException.getOldException());
-			System.out.println("Parameters:");
+			System.err.println(easpException.getOldException());
+			System.err.println("Parameters:");
 			for (String p : easpException.getParameters()){
-				System.out.println(p);
+				System.err.println(p);
 			}
 			break;
 		default:
-			System.out.println(easpException.getOldException());
-			System.out.println("Parameters:");
+			System.err.println(easpException.getOldException());
+			System.err.println("Parameters:");
 			for (String p : easpException.getParameters()){
-				System.out.println(p);
+				System.err.println(p);
 			}
 			break;
 		}
-	}
-
-	public void start() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -1,5 +1,6 @@
 package easp.facadeAPI;
 
+import easp.UserInterface.EASPUserInterface;
 import easp.exceptions.EASPException;
 
 public interface EASPFacade {
@@ -12,12 +13,15 @@ public interface EASPFacade {
 		
 	// ------------------------------ UserInterface --------------------------- //
 	
-	public void startUI();
+	public void startUI(EASPUserInterface ui);
 	
 	public void closeUI();
+	
+	void run();
 	
 	// -------------------------------- Exceptions ---------------------------- //
 	
 	public void handleEASPException(EASPException easpException);
+
 	
 }

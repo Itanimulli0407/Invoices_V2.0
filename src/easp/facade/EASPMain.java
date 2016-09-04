@@ -2,19 +2,25 @@ package easp.facade;
 
 import easp.UserInterface.EASPCMD;
 import easp.UserInterface.EASPCMDEnum;
+import easp.UserInterface.EASPGUI;
+import easp.UserInterface.EASPUserInterface;
+import easp.facadeAPI.EASPFacade;
 
-public class Main {
+public class EASPMain {
 	
 	public static void main(String[] args) {
-		Main main = new Main();
+		EASPMain main = new EASPMain();
 		StringBuilder input = main.getCommandLine(args);
 		
 		String guiFlag = main.getParameterValue(EASPCMDEnum.GUIFLAG, input);
+		EASPUserInterface ui;
 		if (guiFlag.equals("0")){
-			main.runCMD();
+			ui = new EASPCMD();
 		} else {
-			main.runGUI();
+			ui = new EASPGUI();
 		} 
+		EASPFacade facade = new EASPFacadeImpl();
+		facade.startUI(ui);
 	}
 
 	private StringBuilder getCommandLine(String[] args){
@@ -47,15 +53,5 @@ public class Main {
         }
         return result;
     }
-    
-	private void runCMD() {
-		EASPCMD cmdUI = new EASPCMD();
-		cmdUI.start();
-	}
-
-	private void runGUI() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
