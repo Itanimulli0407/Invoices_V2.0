@@ -43,9 +43,11 @@ public class EASPCMD implements EASPUserInterface {
 	@Override
 	public void start(EASPFacade easpFacade) {
 		this.easpFacade = easpFacade;
-		System.out.println("__________________________________________");
-		System.out.println("__         WELCOME TO EASP 2016         --");
-		System.out.println("__________________________________________");
+		System.out.println("------------------------------------------");
+		System.out.println("--                                      --");
+		System.out.println("--         WELCOME TO EASP 2016         --");
+		System.out.println("--                                      --");
+		System.out.println("------------------------------------------");
 		InputStreamReader isr = new InputStreamReader(System.in);
 		this.commandReader = new BufferedReader(isr);
 	}
