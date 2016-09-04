@@ -1,4 +1,4 @@
-package easp.UserInterface;
+package easp.userInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import easp.commands.EASPCommandEnum;
 import easp.exceptions.EASPException;
 import easp.exceptions.EASPExceptionEnum;
 import easp.facadeAPI.EASPFacade;
+import easp.userInterfaceAPI.EASPUserInterface;
 //import easp.exceptions.EASPExceptionEnum;
 import javafx.util.Pair;
 

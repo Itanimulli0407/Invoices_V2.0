@@ -2,13 +2,13 @@ package easp.facade;
 
 import java.sql.Connection;
 
-import easp.UserInterface.EASPUserInterface;
 import easp.commands.EASPCommand;
 import easp.exceptions.EASPException;
 import easp.facadeAPI.EASPFacade;
 import easp.service.EASPCommandServiceImpl;
 import easp.service.EASPLoginServiceImpl;
 import easp.serviceAPI.EASPCommandService;
+import easp.userInterfaceAPI.EASPUserInterface;
 import javafx.util.Pair;
 
 

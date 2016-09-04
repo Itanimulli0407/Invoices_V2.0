@@ -1,8 +1,8 @@
 package easp.facadeAPI;
 
-import easp.UserInterface.EASPUserInterface;
 import easp.commands.EASPCommand;
 import easp.exceptions.EASPException;
+import easp.userInterfaceAPI.EASPUserInterface;
 
 public interface EASPFacade {
 	

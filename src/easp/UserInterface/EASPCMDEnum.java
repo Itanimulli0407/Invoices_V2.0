@@ -1,4 +1,4 @@
-package easp.UserInterface;
+package easp.userInterface;
 
 public enum EASPCMDEnum {
 

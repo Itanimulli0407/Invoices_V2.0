@@ -1,10 +1,10 @@
 package easp.facade;
 
-import easp.UserInterface.EASPCMD;
-import easp.UserInterface.EASPCMDEnum;
-import easp.UserInterface.EASPGUI;
-import easp.UserInterface.EASPUserInterface;
 import easp.facadeAPI.EASPFacade;
+import easp.userInterface.EASPCMD;
+import easp.userInterface.EASPCMDEnum;
+import easp.userInterface.EASPGUI;
+import easp.userInterfaceAPI.EASPUserInterface;
 
 public class EASPMain {
 	

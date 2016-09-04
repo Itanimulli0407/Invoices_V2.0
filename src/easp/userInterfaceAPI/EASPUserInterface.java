@@ -1,4 +1,4 @@
-package easp.UserInterface;
+package easp.userInterfaceAPI;
 
 import easp.exceptions.EASPException;
 import easp.facadeAPI.EASPFacade;

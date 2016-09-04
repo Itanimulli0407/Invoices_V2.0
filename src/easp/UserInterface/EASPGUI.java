@@ -1,7 +1,8 @@
-package easp.UserInterface;
+package easp.userInterface;
 
 import easp.exceptions.EASPException;
 import easp.facadeAPI.EASPFacade;
+import easp.userInterfaceAPI.EASPUserInterface;
 import javafx.util.Pair;
 
 public class EASPGUI implements EASPUserInterface {
