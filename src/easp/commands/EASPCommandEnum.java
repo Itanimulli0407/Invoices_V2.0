@@ -2,7 +2,7 @@ package easp.commands;
 
 public enum EASPCommandEnum {
 
-	DEAULT (""),
+	DEFAULT (""),
 	EXIT ("exit"),
 	CREATE_CUSTOMER ("create_customer"),
 	CREATE_INVOICE ("create_invoice");

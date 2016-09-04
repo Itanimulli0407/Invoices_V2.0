@@ -14,4 +14,10 @@ public interface EASPUserInterface {
 
 	public void run() throws EASPException;
 	
+	public void showMessage(String message);
+	
+	public void showImportantMessage(String message);
+	
+	public void showError(EASPException easpException);
+	
 }

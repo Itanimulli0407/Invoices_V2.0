@@ -59,7 +59,7 @@ public class EASPCMD implements EASPUserInterface {
 	}
 
 	private EASPCommand readCommand() throws EASPException {
-		EASPCommand result = new EASPCommand(EASPCommandEnum.DEAULT);
+		EASPCommand result = new EASPCommand(EASPCommandEnum.DEFAULT);
 		try {
 			System.out.println("Type command: ");
 			String input = commandReader.readLine();
@@ -73,10 +73,32 @@ public class EASPCMD implements EASPUserInterface {
 
 	@Override
 	public void run() throws EASPException {
-		EASPCommand command = new EASPCommand(EASPCommandEnum.DEAULT);
+		EASPCommand command = new EASPCommand(EASPCommandEnum.DEFAULT);
 		while (true) {
 			command = readCommand();
 			easpFacade.executeCommand(command);
+		}
+	}
+
+	@Override
+	public void showMessage(String message) {
+		System.out.println(message);
+	}
+
+	@Override
+	public void showImportantMessage(String message) {
+		System.out.println(message);
+	}
+
+	@Override
+	public void showError(EASPException easpException) {
+		System.err.println("Error!");
+		System.err.println(easpException.getOldException());
+		if (easpException.getParameters().length > 0){
+			System.err.println("Parameters: ");
+			for (String parameter : easpException.getParameters()){
+				System.err.println(parameter);
+			}
 		}
 	}
 

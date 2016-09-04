@@ -30,4 +30,22 @@ public class EASPGUI implements EASPUserInterface {
 		
 	}
 
+	@Override
+	public void showMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showImportantMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showError(EASPException easpException) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
