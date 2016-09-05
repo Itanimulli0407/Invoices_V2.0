@@ -1,5 +1,7 @@
 package easp.service;
 
+import java.sql.SQLException;
+
 import easp.commands.EASPCommand;
 import easp.commands.EASPCommandEnum;
 import easp.exceptions.EASPException;
@@ -22,6 +24,9 @@ public class EASPCommandServiceImpl implements EASPCommandService {
 		case "exit":
 			result = new EASPCommand(EASPCommandEnum.EXIT);
 			break;
+		case "create_customer":
+			result = new EASPCommand(EASPCommandEnum.CREATE_CUSTOMER);
+			break;
 		default:
 			result = new EASPCommand(EASPCommandEnum.DEFAULT);
 			break;
@@ -30,9 +35,11 @@ public class EASPCommandServiceImpl implements EASPCommandService {
 	}
 
 	@Override
-	public void executeCommand(EASPCommand command) throws EASPException {
+	public void executeCommand(EASPCommand command) throws EASPException, SQLException {
 		if (command.getType().equals(EASPCommandEnum.EXIT)) {
 			facade.closeUI();
+		} else if (command.getType().equals(EASPCommandEnum.CREATE_CUSTOMER)) {
+			facade.createNewCustomer();
 		} else /* unknown command */ {
 			throw new EASPException(EASPExceptionEnum.E005, new NullPointerException(), command.getType().toString());
 		}

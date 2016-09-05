@@ -1,5 +1,7 @@
 package easp.facadeAPI;
 
+import java.sql.SQLException;
+
 import easp.commands.EASPCommand;
 import easp.exceptions.EASPException;
 import easp.userInterfaceAPI.EASPUserInterface;
@@ -11,6 +13,8 @@ public interface EASPFacade {
 	public void connectToDB(String username, String password);
 	
 	public void closeConnection();
+	
+	public void createNewCustomer() throws SQLException;
 		
 	// ------------------------------ UserInterface --------------------------- //
 	

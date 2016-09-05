@@ -3,6 +3,8 @@ package easp.userInterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import easp.commands.EASPCommand;
 import easp.commands.EASPCommandEnum;
@@ -40,6 +42,70 @@ public class EASPCMD implements EASPUserInterface {
 		}
 
 		return new Pair<String, String>(username, password);
+	}
+
+	@Override
+	public Map<String, String> getCustomerData() throws EASPException {
+		Map<String, String> result = new HashMap<>();
+		InputStreamReader isr = null;
+		BufferedReader br = null;
+
+		String firstName = "";
+		String lastName = "";
+		String birthday = "";
+		String street = "";
+		String zipCode = "";
+		String city = "";
+		String email = "";
+		String privateNumber = "";
+		String mobileNumber = "";
+		String workNumber = "";
+		String faxNumber = "";
+
+		try {
+			isr = new InputStreamReader(System.in);
+			br = new BufferedReader(isr);
+
+			System.out.println("First Name:");
+			firstName = br.readLine();
+			System.out.println("Last Name:");
+			lastName = br.readLine();
+			System.out.println("Birthday (yyyy-mm-dd):");
+			birthday = br.readLine();
+			System.out.println("Street:");
+			street = br.readLine();
+			System.out.println("Zip-Code:");
+			zipCode = br.readLine();
+			System.out.println("City:");
+			city = br.readLine();
+			System.out.println("Email:");
+			email = br.readLine();
+			System.out.println("Number Private:");
+			privateNumber = br.readLine();
+			System.out.println("Number Mobile:");
+			mobileNumber = br.readLine();
+			System.out.println("Number Work:");
+			workNumber = br.readLine();
+			System.out.println("Number Fax:");
+			faxNumber = br.readLine();
+			
+			result.put("firstName", firstName);
+			result.put("lastName", lastName);
+			result.put("birthday", birthday);
+			result.put("street", street);
+			result.put("zipCode", zipCode);
+			result.put("city", city);
+			result.put("email", email);
+			result.put("privateNumber", privateNumber);
+			result.put("mobileNumber", mobileNumber);
+			result.put("workNumber", workNumber);
+			result.put("faxNumber", faxNumber);	
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			throw new EASPException(EASPExceptionEnum.E004, e, firstName, lastName, birthday, street, zipCode, city,
+					email, privateNumber, mobileNumber, workNumber, faxNumber);
+		}
+		return result;
 	}
 
 	@Override
@@ -95,12 +161,18 @@ public class EASPCMD implements EASPUserInterface {
 	public void showError(EASPException easpException) {
 		System.err.println("Error!");
 		System.err.println(easpException.getOldException());
-		if (easpException.getParameters().length > 0){
+		if (easpException.getParameters() != null) {
 			System.err.println("Parameters: ");
-			for (String parameter : easpException.getParameters()){
+			for (String parameter : easpException.getParameters()) {
 				System.err.println(parameter);
 			}
 		}
+	}
+
+	@Override
+	public void showInputError(Pair<String, String> inputPair) {
+		System.err.println("Input error in field: " + inputPair.getKey());
+		System.err.println("Input was: " + inputPair.getValue());
 	}
 
 }

@@ -6,7 +6,8 @@ public enum EASPExceptionEnum {
 	E002 ("Null Pointer Error"),
 	E003 ("SQL Error"),
 	E004 ("IO Exception"),
-	E005 ("Unknown Command");
+	E005 ("Unknown Command"), 
+	E006 ("Input Error");
 	
 	private String type;
 	

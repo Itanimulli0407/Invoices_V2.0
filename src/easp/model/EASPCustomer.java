@@ -3,27 +3,27 @@ package easp.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
-
 public class EASPCustomer {
 
-	private StringProperty firstName, lastName;
-	private StringProperty birthday; // Format: yyyy.MM.dd
-	private StringProperty street;
-	private IntegerProperty zipCode;
-	private StringProperty city;
-	private StringProperty mailAdress;
-	private StringProperty privateNumber;
-	private StringProperty mobileNumber;
-	private StringProperty workNumber;
-	private StringProperty faxNumber;
-	private IntegerProperty id;
+	private String firstName, lastName;
+	private String birthday; // Format: yyyy.MM.dd
+	private String street;
+	private Integer zipCode;
+	private String city;
+	private String mailAdress;
+	private String privateNumber;
+	private String mobileNumber;
+	private String workNumber;
+	private String faxNumber;
+	private Integer id;
 
 	// TODO: null Werte zulassen -> Im Customer Overview abfangen
 	public EASPCustomer() {
-		this.id = new SimpleIntegerProperty(0);
+		
+	}
+
+	public EASPCustomer(Map<String, Object> customerData) {
+		
 	}
 
 	@Override
@@ -35,114 +35,114 @@ public class EASPCustomer {
 
 	public Map<String, String> getNumbers() {
 		Map<String, String> map = new HashMap<>();
-		if (!this.getPrivateNumber().get().trim().equals("")) {
-			map.put("Privat", this.getPrivateNumber().get());
+		if (!this.getPrivateNumber().trim().equals("")) {
+			map.put("private", this.getPrivateNumber());
 		}
-		if (!this.getMobileNumber().get().trim().equals("")) {
-			map.put("Mobil", this.getMobileNumber().get());
+		if (!this.getMobileNumber().trim().equals("")) {
+			map.put("mobile", this.getMobileNumber());
 		}
-		if (!this.getWorkNumber().get().trim().equals("")) {
-			map.put("Geschaeftlich", this.getWorkNumber().get());
+		if (!this.getWorkNumber().trim().equals("")) {
+			map.put("work", this.getWorkNumber());
 		}
-		if (!this.getFaxNumber().get().trim().equals("")) {
-			map.put("Fax", this.getFaxNumber().get());
+		if (!this.getFaxNumber().trim().equals("")) {
+			map.put("fax", this.getFaxNumber());
 		}
 		return map;
 	}
 
-	public StringProperty getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirstName(StringProperty firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public StringProperty getLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setLastName(StringProperty lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	public StringProperty getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(StringProperty birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
-	public StringProperty getStreet() {
+	public String getStreet() {
 		return street;
 	}
 
-	public void setStreet(StringProperty street) {
+	public void setStreet(String street) {
 		this.street = street;
 	}
 
-	public IntegerProperty getZipCode() {
+	public Integer getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(IntegerProperty zipCode) {
+	public void setZipCode(Integer zipCode) {
 		this.zipCode = zipCode;
 	}
 
-	public StringProperty getCity() {
+	public String getCity() {
 		return city;
 	}
 
-	public void setCity(StringProperty city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
-	public StringProperty getMailAdress() {
+	public String getMailAdress() {
 		return mailAdress;
 	}
 
-	public void setMail(StringProperty mailAdress) {
+	public void setMailAdress(String mailAdress) {
 		this.mailAdress = mailAdress;
 	}
 
-	public StringProperty getPrivateNumber() {
+	public String getPrivateNumber() {
 		return privateNumber;
 	}
 
-	public void setPrivateNumber(StringProperty privateNumber) {
+	public void setPrivateNumber(String privateNumber) {
 		this.privateNumber = privateNumber;
 	}
 
-	public StringProperty getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(StringProperty mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public StringProperty getWorkNumber() {
+	public String getWorkNumber() {
 		return workNumber;
 	}
 
-	public void setWorkNumber(StringProperty workNumber) {
+	public void setWorkNumber(String workNumber) {
 		this.workNumber = workNumber;
 	}
 
-	public StringProperty getFaxNumber() {
+	public String getFaxNumber() {
 		return faxNumber;
 	}
 
-	public void setFaxNumber(StringProperty faxNumber) {
+	public void setFaxNumber(String faxNumber) {
 		this.faxNumber = faxNumber;
 	}
 
-	public IntegerProperty getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(IntegerProperty id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

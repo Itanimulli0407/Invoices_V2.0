@@ -4,6 +4,7 @@ public enum EASPCommandEnum {
 
 	DEFAULT (""),
 	EXIT ("exit"),
+	SHOW_CUSTOMERS ("show_customers"),
 	CREATE_CUSTOMER ("create_customer"),
 	CREATE_INVOICE ("create_invoice");
 	
