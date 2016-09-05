@@ -8,9 +8,11 @@ import java.util.Map;
 import easp.commands.EASPCommand;
 import easp.exceptions.EASPException;
 import easp.facadeAPI.EASPFacade;
+import easp.service.EASPCheckServiceImpl;
 import easp.service.EASPCommandServiceImpl;
 import easp.service.EASPLoginServiceImpl;
 import easp.service.EASPQueryServiceImpl;
+import easp.serviceAPI.EASPCheckService;
 import easp.serviceAPI.EASPCommandService;
 import easp.serviceAPI.EASPQueryService;
 import easp.statements.EASPStatement;
@@ -85,10 +87,16 @@ public class EASPFacadeImpl implements EASPFacade {
 		Map<String, String> customerData = null;
 		PreparedStatement statement = null;
 		EASPStatement easpStatement = null;
+		boolean check = false;
 
 		try {
 			// Get and check data
-			customerData = ui.getCustomerData();
+			while (!check) {
+				customerData = ui.getCustomerData();
+				check = this.checkCustomerData(customerData);
+				if (!check)
+					ui.showMessage("Please try again");
+			}
 
 			// Prepare customer statement
 			EASPQueryService queryService = new EASPQueryServiceImpl();
@@ -145,12 +153,68 @@ public class EASPFacadeImpl implements EASPFacade {
 			ui.showMessage("Unknown command");
 			break;
 		case E006:
-			ui.showInputError(new Pair<String, String>(easpException.getParameters()[0], easpException.getParameters()[1]));
+			ui.showInputError(
+					new Pair<String, String>(easpException.getParameters()[0], easpException.getParameters()[1]));
 			break;
 		default:
 			ui.showError(easpException);
 			break;
 		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//
+	// PRIVATE FUNCTIONS
+	//
+	//////////////////////////////////////////////////////////////////////////
+
+	private boolean checkCustomerData(Map<String, String> customerData) {
+		EASPCheckService checkService = new EASPCheckServiceImpl();
+		boolean result = true;
+		result = true;
+		try {
+			result &= checkService.checkFirstName(customerData.get("firstName"));
+		} catch (EASPException easpException) {
+			result = false;
+			this.handleEASPException(easpException);
+		}
+		try {
+			result &= checkService.checkLastName(customerData.get("lastName"));
+		} catch (EASPException easpException) {
+			result = false;
+			this.handleEASPException(easpException);
+		}
+		try {
+			result &= checkService.checkBirthday(customerData.get("birthday"));
+		} catch (EASPException easpException) {
+			result = false;
+			this.handleEASPException(easpException);
+		}
+		try {
+			result &= checkService.checkStreet(customerData.get("street"));
+		} catch (EASPException easpException) {
+			result = false;
+			this.handleEASPException(easpException);
+		}
+		try {
+			result &= checkService.checkZipCode(customerData.get("zipCode"));
+		} catch (EASPException easpException) {
+			result = false;
+			this.handleEASPException(easpException);
+		}
+		try {
+			result &= checkService.checkCity(customerData.get("city"));
+		} catch (EASPException easpException) {
+			result = false;
+			this.handleEASPException(easpException);
+		}
+		try {
+			result &= checkService.checkEmail(customerData.get("email"));
+		} catch (EASPException easpException) {
+			result = false;
+			this.handleEASPException(easpException);
+		}
+		return result;
 	}
 
 }
