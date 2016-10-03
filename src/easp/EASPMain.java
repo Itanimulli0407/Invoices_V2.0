@@ -1,5 +1,6 @@
-package easp.facade;
+package easp;
 
+import easp.facade.EASPFacadeImpl;
 import easp.facadeAPI.EASPFacade;
 import easp.userInterface.EASPCMD;
 import easp.userInterface.EASPCMDEnum;
